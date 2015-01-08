@@ -1,5 +1,5 @@
 #ifndef t3spi_h
-#define _t3spi_h
+#define t3spi_h
 
 #include "mk20dx128.h"
 #include "core_pins.h"
