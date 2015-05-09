@@ -15,13 +15,13 @@ T3SPI::T3SPI() {
 
 void T3SPI::begin_MASTER() {
 	setMCR(MASTER);
-	setCTAR(CTAR0,8,SPI_MODE0,LSB_FIRST,SPI_CLOCK_DIV8);
+	setCTAR(CTAR_0,8,SPI_MODE0,LSB_FIRST,SPI_CLOCK_DIV8);
 	enablePins(SCK, MOSI, MISO, CS0, CS_ActiveLOW);
 }
 
 void T3SPI::begin_MASTER(uint8_t sck, uint8_t mosi, uint8_t miso, uint8_t cs, bool activeState){
 	setMCR(MASTER);
-	setCTAR(CTAR0,8,SPI_MODE0,LSB_FIRST,SPI_CLOCK_DIV8);
+	setCTAR(CTAR_0,8,SPI_MODE0,LSB_FIRST,SPI_CLOCK_DIV8);
 	enablePins(sck, mosi, miso, cs, activeState);
 }
 
