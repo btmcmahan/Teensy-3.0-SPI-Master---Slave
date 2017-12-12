@@ -1,8 +1,6 @@
 
+#include <Arduino.h>
 #include "t3spi.h"
-#include "mk20dx128.h"
-#include "core_pins.h"
-#include "arduino.h"
 
 
 T3SPI::T3SPI() {
@@ -15,13 +13,13 @@ T3SPI::T3SPI() {
 
 void T3SPI::begin_MASTER() {
 	setMCR(MASTER);
-	setCTAR(CTAR0,8,SPI_MODE0,LSB_FIRST,SPI_CLOCK_DIV8);
+	setCTAR(CTARn0,8,SPI_MODE0,LSB_FIRST,SPI_CLOCK_DIV8);
 	enablePins(SCK, MOSI, MISO, CS0, CS_ActiveLOW);
 }
 
 void T3SPI::begin_MASTER(uint8_t sck, uint8_t mosi, uint8_t miso, uint8_t cs, bool activeState){
 	setMCR(MASTER);
-	setCTAR(CTAR0,8,SPI_MODE0,LSB_FIRST,SPI_CLOCK_DIV8);
+	setCTAR(CTARn0,8,SPI_MODE0,LSB_FIRST,SPI_CLOCK_DIV8);
 	enablePins(sck, mosi, miso, cs, activeState);
 }
 
@@ -61,8 +59,8 @@ void T3SPI::setCTAR(bool CTARn, uint8_t size, uint8_t dataMode, uint8_t bo, uint
 
 void T3SPI::setCTAR_SLAVE(uint8_t size, uint8_t dataMode){
 	SPI0_CTAR0_SLAVE=0;
-	setFrameSize(CTAR_SLAVE, (size - 1));
-	setMode(CTAR_SLAVE, dataMode);
+	setFrameSize(CTARn_SLAVE, (size - 1));
+	setMode(CTARn_SLAVE, dataMode);
 }
 
 void T3SPI::enablePins(uint8_t sck, uint8_t mosi, uint8_t miso, uint8_t cs, bool activeState){
