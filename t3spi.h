@@ -26,9 +26,9 @@
 #define MSB_FIRST			0
 #define LSB_FIRST			1
 
-#define CTAR0				0
-#define CTAR1				1
-#define CTAR_SLAVE			2
+#define CTARn0				0
+#define CTARn1				1
+#define CTARn_SLAVE			2
 
 #define	SCK					0x0D
 #define MOSI				0x0B
@@ -59,17 +59,17 @@
 
 
 
-#define SPI_WRITE_8(c,CTARn, PCS) \	
+#define SPI_WRITE_8(c,CTARn, PCS) \
 	do { \
 		while ((SPI0_SR & SPI_SR_TXCTR) >= 0x00004000); \
-		SPI0_PUSHR = ((c)&0xff)   | SPI0_PUSHR_CTAS(CTARn) | SPI0_PUSHR_PCS(0x1f & PCS); \
+		SPI0_PUSHR = ((c)&0xff)   | SPI_PUSHR_CTAS(CTARn) | SPI_PUSHR_PCS(0x1f & PCS); \
 	} while(0)
 
 
-#define SPI_WRITE_16(w,CTARn, PCS) \	
+#define SPI_WRITE_16(w,CTARn, PCS) \
 	do { \
 		while ((SPI0_SR & SPI_SR_TXCTR) >= 0x00004000); \
-		SPI0_PUSHR = ((w)&0xffff) | SPI0_PUSHR_CTAS(CTARn) | SPI0_PUSHR_PCS(0x1f & PCS); \
+		SPI0_PUSHR = ((w)&0xffff) | SPI_PUSHR_CTAS(CTARn) | SPI_PUSHR_PCS(0x1f & PCS); \
 	} while(0)
 
 
